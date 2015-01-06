@@ -1,0 +1,29 @@
+{
+  "name": "app-name",
+  "version": "0.0.1",
+  "dependencies": {
+    "backbone": "^1.1.2",
+    "backbone-browserify": "*",
+    "jquery-browserify": "*",
+    "underscore": "*"
+  },
+  "devDependencies": {
+    "browserify": "^8.0.3",
+    "gulp": "3.6.*",
+    "gulp-browserify": "0.5.*",
+    "gulp-concat": "2.2.*",
+    "gulp-connect": "1.0.*",
+    "gulp-imagemin": "0.1.*",
+    "gulp-minify-html": "0.1.1",
+    "gulp-rename": "1.2.*",
+    "gulp-sass": "^1.2.4",
+    "gulp-stylus": "0.1.*",
+    "gulp-uglify": "0.2.*",
+    "gulp-util": "3.0.*",
+    "watchify": "^2.2.1"
+  },
+  "engines": {
+    "node": "0.10.24",
+    "npm": "1.3.21"
+  }
+}
