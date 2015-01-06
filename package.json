@@ -1,5 +1,5 @@
 {
-  "name": "app-name",
+  "name": "backbone-browserify",
   "version": "0.0.1",
   "dependencies": {
     "backbone": "^1.1.2",
@@ -10,7 +10,6 @@
   "devDependencies": {
     "browserify": "^8.0.3",
     "gulp": "3.6.*",
-    "gulp-browserify": "0.5.*",
     "gulp-concat": "2.2.*",
     "gulp-connect": "1.0.*",
     "gulp-imagemin": "0.1.*",
