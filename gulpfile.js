@@ -3,14 +3,13 @@ var util = require('gulp-util');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var browserify = require('browserify');
+var sass = require('gulp-sass');
 var minifyHTML = require('gulp-minify-html');
-var stylus = require('gulp-stylus');
 var imagemin = require('gulp-imagemin');
 var connect = require('gulp-connect');
 var rename = require('gulp-rename');
 var source = require('vinyl-source-stream');
 var hbsfy = require('hbsfy');
-var _ = require('underscore');
 
 var paths = {
     src: './app',
@@ -21,6 +20,7 @@ var files = {
     scripts: [paths.src+'/**/*.js'],
     html: [paths.src+'/**/*.html'],
     styles: [paths.src+'/styles/**/*.scss'],
+    vendor: ['./vendor/**/*.*'],
     images: [
         paths.src+'/images/**/*.png',
         paths.src+'/images/**/*.jpg',
@@ -29,8 +29,6 @@ var files = {
 };
 
 gulp.task('scripts', function (cb) {
-
-    cb = _.once(cb);
 
     var bundler = browserify({
         debug: true,
@@ -68,35 +66,42 @@ gulp.task('html', function() {
 
 gulp.task('sass', function() {
     gulp.src(files.styles)
-        .pipe(gulp.dest(paths.dist+'/css'))
+        .pipe(sass())
+        .pipe(gulp.dest(paths.dist+'/styles'))
         .pipe(connect.reload());
+});
+
+gulp.task('vendor', function() {
+    gulp.src(files.vendor)
+        .pipe(gulp.dest(paths.dist+'/vendor'));
 });
 
 gulp.task('images', function() {
     gulp.src(files.images)
-        .pipe(imagemin())
+        //.pipe(imagemin())
         .pipe(gulp.dest(paths.dist+'/images'))
         .pipe(connect.reload());
 });
 
 gulp.task('connect', connect.server({
     root: [paths.dist],
-    port: 1337,
+    port: 1234,
     livereload: true
 }));
 
 gulp.task('watch', function () {
     gulp.watch(files.scripts, ['scripts']);
     gulp.watch(files.html, ['html']);
-    //gulp.watch(files.syles, ['sass']);
+    gulp.watch(files.syles, ['sass']);
     gulp.watch(files.images, ['images']);
 });
 
 gulp.task('default', [
     'scripts',
     'html',
-    //'stylus',
+    'sass',
     'images',
+    'vendor',
     'connect',
     'watch'
 ]);
