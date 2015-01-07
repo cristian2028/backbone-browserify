@@ -19,6 +19,7 @@ var paths = {
 var files = {
     scripts: [paths.src+'/**/*.js'],
     html: [paths.src+'/**/*.html'],
+    templates: [paths.src+'/**/*.hbs'],
     styles: [paths.src+'/styles/**/*.scss'],
     vendor: ['./vendor/**/*.*'],
     images: [
@@ -43,7 +44,9 @@ gulp.task('scripts', function (cb) {
         global: true
     }, hbsfy);
 
-    bundler.require('./app/scripts/app');
+    bundler.require('./app/scripts/app',{
+        expose: 'app'
+    });
 
 
     return bundler.bundle()
@@ -52,7 +55,8 @@ gulp.task('scripts', function (cb) {
         // Use vinyl-source-stream to make the stream gulp compatible.
         .pipe(source('bundle.js'))
         // Specify the output destination
-        .pipe(gulp.dest(paths.dist));
+        .pipe(gulp.dest(paths.dist))
+        .pipe(connect.reload());
         //.on('end', cb);
 });
 
@@ -91,8 +95,9 @@ gulp.task('connect', connect.server({
 
 gulp.task('watch', function () {
     gulp.watch(files.scripts, ['scripts']);
+    gulp.watch(files.templates, ['scripts']);
     gulp.watch(files.html, ['html']);
-    gulp.watch(files.syles, ['sass']);
+    gulp.watch(files.styles, ['sass']);
     gulp.watch(files.images, ['images']);
 });
 

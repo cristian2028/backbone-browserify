@@ -1,4 +1,8 @@
-$color: #333;
+$bgcolor: #aaa;
+$textcolor: #00a;
 body {
-  background-color: $color;
+  background-color: $bgcolor;
+}
+h1{
+  color:$textcolor;
 }
