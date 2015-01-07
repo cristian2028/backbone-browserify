@@ -11,7 +11,7 @@ module.exports = Backbone.View.extend({
     },
 
     render: function () {
-        this.$el.html(template());
+        this.$el.html(template({title: "Home Page", body: "Home page content"}));
         return this;
     }
 
