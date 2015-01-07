@@ -9,7 +9,6 @@
 
   <!-- Application styles. -->
   <!-- build:[href] /styles.min.css -->
-  <link rel="stylesheet" href="/app/styles/index.css">
   <!-- /build -->
 </head>
 
@@ -19,8 +18,12 @@
 
   <!-- Application source. -->
   <!-- build:[src] /source.min.js -->
-  <script src="/bower_components/requirejs/require.js"
-    data-main="/app/config"></script>
+  <script src="bundle.js"></script>
+  <script>
+      var Application = require('./app/scripts/app');
+      Application.start();
+  </script>
+
   <!-- /build -->
 </body>
 </html>
