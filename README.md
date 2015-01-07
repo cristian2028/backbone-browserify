@@ -1,4 +1,5 @@
 gulp browserify backbone
 ====================================
 
-Gulp Browserify Backbone
+1. $ npm install
+2. $ gulp
