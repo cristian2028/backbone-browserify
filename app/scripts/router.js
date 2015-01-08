@@ -5,8 +5,9 @@ var $ = require('jquery');
 
 // Views:
 var HomeView = require('./views/home');
+var Menu = require('./views/menu');
 
-homeView = new HomeView();
+var menu = new Menu();
 
 // Defining the application router.
 var Router = Backbone.Router.extend({
@@ -17,6 +18,7 @@ var Router = Backbone.Router.extend({
     },
 
     index: function() {
+        var homeView = new HomeView();
         $('#main').append(homeView.$el);
     },
 
