@@ -1,0 +1,51 @@
+project.version = '1.0.0'
+
+buildscript {
+  repositories {
+    jcenter() //required by gradle-gulp plugin
+  }
+  dependencies {
+    classpath 'com.moowork.gradle:gradle-gulp-plugin:0.1'
+  }
+}
+
+apply plugin: 'com.moowork.gulp'
+node {
+  version = '0.10.35'
+  download = true
+}
+
+configurations {
+  archives
+  jar
+}
+
+def distributionsDir = file(project.buildDir.absolutePath+'/distributions')
+
+gulp_build.dependsOn npmInstall
+
+task build(dependsOn: gulp_build, description: 'Assembles and tests this project', group: 'build') {}
+
+task jar(type: Jar, dependsOn: build) {
+  destinationDir = distributionsDir
+  baseName = project.name
+
+  from('build/gulp') {
+    into "/static/"
+  }
+}
+
+task zip(
+  type: Zip, 
+  description: 'Package the project files as a zip file suitable for stand-alone deployment into a web server',
+  dependsOn: build) {
+  destinationDir = distributionsDir
+  baseName = project.name
+
+  from 'build/gulp'
+}
+
+artifacts {
+  archives(jar, zip)
+  jar jar
+}

@@ -13,7 +13,7 @@ var hbsfy = require('hbsfy');
 
 var paths = {
     src: './app',
-    dist: './dist'
+    dist: './build/gulp'
 };
 
 var files = {

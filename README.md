@@ -1,11 +1,16 @@
 gulp browserify backbone
 ====================================
 
+Prerequisites
+-------
+Java installed, to use gradle as a wrapper for gulp
+
+
 Install & Run
 -------
 
-1. $ npm install
-2. $ gulp
+1. $ ./gradlew npmInstall 
+2. $ ./gradlew gulp_default
 3. Run: http://localhost:1234/
 
 
