@@ -101,6 +101,14 @@ gulp.task('watch', function () {
     gulp.watch(files.images, ['images']);
 });
 
+gulp.task('build', [
+    'scripts',
+    'html',
+    'sass',
+    'images',
+    'vendor'
+]);
+
 gulp.task('default', [
     'scripts',
     'html',
