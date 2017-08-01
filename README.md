@@ -34,6 +34,6 @@ Stack
     * Gulp: http://gulpjs.com/
 - Testing (TBD):
     * phantomJS http://phantomjs.org/
-    * Mocha http://visionmedia.github.io/mocha/
+    * Mocha http://mochajs.org/
     * Chai http://chaijs.com/
     * Sinon http://sinonjs.org/
